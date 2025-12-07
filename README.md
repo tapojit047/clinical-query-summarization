@@ -1,31 +1,68 @@
-# clinical-query-summarization
-Summarization of Clinical Queries Using Extractive and Abstractive Approaches
-Individual Project 1: Summarization of Clinical Queries
-This is the same as the group project called "Summarization of Clinical Queries", but has fewer deliverables.
+# Clinical Query Summarization
 
-This is a text summarization project. We will not discuss summarization approaches in class, but this is a good primerLinks to an external site.. We will discuss some evaluation metrics. Note that there are two types of summaries: abstractive and extractive. In short, an extractive summary is a subset of the sentences in the original documents (that are deemed important), whereas an abstractive summary is a generated one.
+This project is a system for summarizing medical articles to answer clinical questions. Given a health-related question and relevant medical articles, the models generate concise abstractive summaries. We fine-tune two transformer models: **Gemma-2** (decoder-only) and **Long-T5** (encoder-decoder) using parameter-efficient LoRA fine-tuning.
 
-Example:
+## Requirements
 
-Original Document
+- Python 3.8+
+- CUDA-compatible GPU (tested on Tesla P100 16GB)
+- Jupyter Notebook or JupyterLab
 
-“Artificial intelligence (AI) is transforming industries by automating processes, improving efficiency, and enabling data-driven decision-making. Businesses across various sectors, including healthcare, finance, and manufacturing, are leveraging AI to gain a competitive edge. In healthcare, AI helps diagnose diseases more accurately and streamlines administrative tasks. In finance, AI-powered algorithms detect fraudulent transactions and optimize investment strategies. In manufacturing, AI enhances predictive maintenance, reducing downtime and costs. However, ethical concerns, such as bias in AI models and data privacy, continue to be challenges that need to be addressed.”
+## How to Run
 
-Extractive Summary
+### 1. Set Up the Environment
 
-Artificial intelligence (AI) is transforming industries by automating processes, improving efficiency, and enabling data-driven decision-making. Businesses across various sectors, including healthcare, finance, and manufacturing, are leveraging AI to gain a competitive edge. However, ethical concerns, such as bias in AI models and data privacy, continue to be challenges that need to be addressed.
+First, open a terminal and create a virtual environment:
 
-Abstractive Summary
+```bash
+python -m venv env
+source env/bin/activate
+```
 
-Artificial intelligence (AI) is revolutionizing industries by enhancing automation, efficiency, and data-driven decision-making. Sectors like healthcare, finance, and manufacturing utilize AI for improved diagnostics, fraud detection, and predictive maintenance. Despite its advantages, ethical issues such as bias and data privacy remain significant challenges.
+### 2. Run Long-T5 Model
 
-Task: Suppose you ask Google for a health-related issue, and multiple search results are returned. You might be interested in a concise summary of the text from the topmost document because that’s most important. This is called single-document summarization, which can be extractive or abstractive. However, different documents in the top-k results might bring in different perspectives, so you might be interested in a multi-document summary, which can be extractive or abstractive.
+1. Open `long-t5/long_t5_lora_finetune.ipynb` in Jupyter
+2. Run the first cell to install all dependencies (PyTorch, transformers, peft, etc.)
+3. Restart the kernel after installation
+4. Run all cells from top to bottom
 
-The aim of this project is to develop systems for either single or multi-document abstractive sumXXzzmaries. The group project expects you to produce four types of summaries: extractive single document, extractive multi-document, abstractive single document, and abstractive multi-document. This one, i.e., the individual one, expects you to produce one of the following two types of summaries: single-document abstractive and multi-document abstractive.
+The notebook will:
+- Load the clinical QA dataset
+- Run baseline inference with the pre-trained Long-T5 model
+- Fine-tune the model using LoRA
+- Generate predictions with the fine-tuned model
+- Evaluate using ROUGE and BERTScore metrics
+- Save all outputs to `long-t5/outputs/`
 
- 
+### 3. Run Gemma-2 Model
 
-Dataset:  Download from this link.Links to an external site. There’s train, validation and test JSON files. Each entry in the JSON corresponds to a question, and looks like this:
-Evaluation: This is a summarization project, so evaluation is very important. You will mostly follow the evaluation protocol mentioned in section 4 of this paperLinks to an external site., and we will also discuss some evaluation metrics.
+1. Open `gemma_2/gemma2_finetune.ipynb` in Jupyter
+2. Run the first cell to install dependencies
+3. Restart the kernel after installation
+4. Run all cells from top to bottom
 
-Notes: This is a modification of task 2 from the MediQA2021 challengeLinks to an external site.. You can use any type of model you want, but you must fine-tune at least one model for each task – single/multi document abstractive summary.
+The notebook will:
+- Load the clinical QA dataset
+- Run baseline inference with Gemma-2
+- Fine-tune using LoRA
+- Evaluate and compare results
+- Save outputs to `gemma_2/outputs/`
+
+**Note:** Gemma-2 requires accepting the model license on Hugging Face. You may need to log in with `huggingface-cli login`.
+
+## Output Files
+
+After running the notebooks, you will find these files in each model's `outputs/` folder:
+
+- `baseline_validation_predictions.json` - Pre-trained model predictions on validation set
+- `baseline_test_predictions.json` - Pre-trained model predictions on test set
+- `finetuned_validation_predictions.json` - Fine-tuned model predictions on validation set
+- `finetuned_test_predictions.json` - Fine-tuned model predictions on test set
+- `evaluation_metrics.json` - ROUGE and BERTScore results
+- `lora_adapter/` - Saved LoRA weights
+
+## Evaluation Metrics
+
+The models are evaluated using:
+- **ROUGE-1, ROUGE-2, ROUGE-L** - Measures n-gram overlap between generated and reference summaries
+- **BERTScore** - Measures semantic similarity using BERT embeddings
