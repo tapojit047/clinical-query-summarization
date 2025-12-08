@@ -1,0 +1,38 @@
+{
+  "baseline_validation": {
+    "rouge1": 0.2581,
+    "rouge2": 0.0981,
+    "rougeL": 0.1777,
+    "rougeLsum": 0.1774,
+    "bertscore_precision": 0.8207,
+    "bertscore_recall": 0.8575,
+    "bertscore_f1": 0.8384
+  },
+  "baseline_test": {
+    "rouge1": 0.2472,
+    "rouge2": 0.0884,
+    "rougeL": 0.1618,
+    "rougeLsum": 0.1618,
+    "bertscore_precision": 0.8244,
+    "bertscore_recall": 0.8499,
+    "bertscore_f1": 0.8366
+  },
+  "finetuned_validation": {
+    "rouge1": 0.2637,
+    "rouge2": 0.0921,
+    "rougeL": 0.1751,
+    "rougeLsum": 0.175,
+    "bertscore_precision": 0.827,
+    "bertscore_recall": 0.8577,
+    "bertscore_f1": 0.8418
+  },
+  "finetuned_test": {
+    "rouge1": 0.2685,
+    "rouge2": 0.1011,
+    "rougeL": 0.1794,
+    "rougeLsum": 0.1792,
+    "bertscore_precision": 0.8306,
+    "bertscore_recall": 0.8549,
+    "bertscore_f1": 0.8422
+  }
+}
