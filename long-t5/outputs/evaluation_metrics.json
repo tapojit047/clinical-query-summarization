@@ -1,12 +1,12 @@
 {
   "baseline_validation": {
-    "rouge1": 0.2581,
-    "rouge2": 0.0981,
-    "rougeL": 0.1777,
-    "rougeLsum": 0.1774,
-    "bertscore_precision": 0.8207,
-    "bertscore_recall": 0.8575,
-    "bertscore_f1": 0.8384
+    "rouge1": 0.2595,
+    "rouge2": 0.0986,
+    "rougeL": 0.1775,
+    "rougeLsum": 0.177,
+    "bertscore_precision": 0.8208,
+    "bertscore_recall": 0.8574,
+    "bertscore_f1": 0.8385
   },
   "baseline_test": {
     "rouge1": 0.2472,
@@ -18,21 +18,21 @@
     "bertscore_f1": 0.8366
   },
   "finetuned_validation": {
-    "rouge1": 0.2637,
-    "rouge2": 0.0921,
-    "rougeL": 0.1751,
-    "rougeLsum": 0.175,
-    "bertscore_precision": 0.827,
-    "bertscore_recall": 0.8577,
-    "bertscore_f1": 0.8418
+    "rouge1": 0.2667,
+    "rouge2": 0.0969,
+    "rougeL": 0.1786,
+    "rougeLsum": 0.179,
+    "bertscore_precision": 0.8281,
+    "bertscore_recall": 0.8587,
+    "bertscore_f1": 0.8429
   },
   "finetuned_test": {
-    "rouge1": 0.2685,
-    "rouge2": 0.1011,
-    "rougeL": 0.1794,
-    "rougeLsum": 0.1792,
-    "bertscore_precision": 0.8306,
-    "bertscore_recall": 0.8549,
-    "bertscore_f1": 0.8422
+    "rouge1": 0.2712,
+    "rouge2": 0.1053,
+    "rougeL": 0.1829,
+    "rougeLsum": 0.1835,
+    "bertscore_precision": 0.8328,
+    "bertscore_recall": 0.856,
+    "bertscore_f1": 0.8438
   }
 }
