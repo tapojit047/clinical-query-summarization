@@ -1,11 +1,16 @@
 # Clinical Query Summarization
 
-This project develops a system for summarizing medical articles to answer clinical questions. Given a health-related question and relevant medical articles, the models generate concise abstractive summaries. We fine-tune two transformer models: **Gemma-2** (decoder-only) and **Long-T5** (encoder-decoder).
+This project develops a system for summarizing medical articles to answer clinical questions. Given a health-related question and relevant medical articles, the models generate concise abstractive summaries. More details about the task: [Task Deskcription](https://github.com/tapojit047/clinical-query-summarization/blob/main/task-description.md)
+
+GitHub Link to the Project: [Github](https://github.com/tapojit047/clinical-query-summarization)
+
+We fine-tune two transformer models: `google/gemma-2-2b` (decoder-only) and `google/long-t5-tglobal-base` (encoder-decoder) and `t5-small` (encoder-decoder). 
 
 ## Compute Environment
 
 - **Long-T5**: Chameleon Cloud ( GPU_P100 baremetal Machine)
-- **Gemma-2**: [Google Colab](https://colab.research.google.com/drive/1pU83U_tvx3HnAkyE71P-KbBh2aLpiv_f#scrollTo=fOMq-Yvqn3iB)
+- **Gemma-2**: Google Colab
+- **t5-small**: Google Colab
 
 ## Requirements
 
@@ -45,16 +50,19 @@ The notebook will:
 
 Run the Gemma-2 notebook directly in Google Colab: [Open in Colab](https://colab.research.google.com/drive/1pU83U_tvx3HnAkyE71P-KbBh2aLpiv_f#scrollTo=fOMq-Yvqn3iB)
 
-Run each cell one by one from top to bottom.
+1. Mount your Google Drive with the dataset and update the `DATA_DIR` with your dataset directory.
+2. Run each cell one by one from top to bottom
 
 **Note:** Gemma-2 requires accepting the model license on Hugging Face. You may need to log in with `huggingface-cli login`.
+
+### T5-Small Model (Google Colab)
+
+Run the T5-Small notebook directly in Google Colab: [Open in Colab](https://colab.research.google.com/drive/1shu_HxMxDCIomuIb93qcTR6bhNASlANz?authuser=1#scrollTo=c3c71af7)
+
+1. Mount your Google Drive with the dataset and change the `BASE_DIR`
+2. Run each cell one by one from top to bottom
 
 ## Output Files
 
 After running the notebooks, you will find these files in each model's `outputs/` folder.
 
-## Evaluation Metrics
-
-The models are evaluated using:
-- **ROUGE-1, ROUGE-2, ROUGE-L** - Measures n-gram overlap between generated and reference summaries
-- **BERTScore** - Measures semantic similarity using BERT embeddings
